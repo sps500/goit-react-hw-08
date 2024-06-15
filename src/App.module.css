@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh; /* высота экрана */
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 600px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+  padding-bottom: 20px;
+}
+
+.contactsContainer {
+  width: 100%;
+  max-width: 600px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  margin-top: 20px;
+}
