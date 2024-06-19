@@ -4,12 +4,8 @@
   padding: 12px;
   font-weight: 700;
   color: #2a363b;
-  border-radius: 5px;
 }
 
 .link.active {
-  color: #1fd62f;
-}
-.nav {
-  margin-left: 10px;
+  color: #4ac3e8;
 }

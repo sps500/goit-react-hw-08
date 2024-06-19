@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.username {
+  font-weight: 700;
+}
+.btn {
+  background-color: transparent;
+  margin-right: 10px;
+}
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: #c6eea0;
+  color: white;
+}

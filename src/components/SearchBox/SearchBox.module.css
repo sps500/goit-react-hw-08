@@ -1,11 +1,22 @@
-.searchBox {
-  margin-bottom: 16px;
+.box {
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  width: 300px;
+  background-color: #c6eea0;
+  border: 1px solid #1fd62f;
 }
 
-input {
-  width: auto;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  display: flex;
+.label {
+  font-size: large;
+  font-weight: 500;
+}
+.input {
+  width: 280px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
 }

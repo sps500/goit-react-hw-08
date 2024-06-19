@@ -1,69 +1,31 @@
-/* .list_style {
+.fullContact {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background-color: #f0f0f0;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: calc(33.33% - 20px);
-  flex-shrink: 0; 
-} */
-
-/* .container_style {
-  display: flex;
-  flex-direction: column; 
-} */
-
-/* .icon_style {
-  margin-right: 10px;
-} */
-/* 
-.button_style {
-  margin-top: auto; 
-} */
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  list-style-type: none;
-  padding: 0;
-}
-
-.list-item {
-  display: flex;
-
-  background-color: #f0f0f0;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px; /* Відстань між рядками */
-}
-/* ================================================== */
-
-.list_style {
-  display: flex;
-  flex-direction: column;
-  background-color: #f0f0f0;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.container_style {
-  display: flex;
-  flex-direction: column;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 10px;
+  justify-content: space-between;
   align-items: center;
+  background-color: white;
 }
 
-.icon_style {
-  margin-bottom: 10px;
+.contactInfo {
+  display: block;
+  gap: 10px;
+  line-height: 1.2em;
+  font-size: large;
+  font-weight: 500;
+  width: 200px;
+}
+.btn {
+  padding: 10px;
+  background-color: #c6eea0;
+  border: 1px solid #1fd62f;
+  border-radius: 5px;
 }
 
-.button_style {
-  margin-top: auto;
-  display: flex;
-  justify-content: center;
+.btn:hover,
+.btn:focus,
+.btn:active {
+  background-color: #c6eea0;
 }

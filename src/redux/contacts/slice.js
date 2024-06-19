@@ -1,50 +1,8 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createSelector,
-} from "@reduxjs/toolkit";
-import axios from "axios";
-
-const BASE_URL = "https://66680038f53957909ff6182a.mockapi.io/Contacts";
-
-// Асинхронные операции
-export const fetchContacts = createAsyncThunk(
-  "contacts/fetchContacts",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get(BASE_URL);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const addContact = createAsyncThunk(
-  "contacts/addContact",
-  async (contact, thunkAPI) => {
-    try {
-      const response = await axios.post(BASE_URL, contact);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const deleteContact = createAsyncThunk(
-  "contacts/deleteContact",
-  async (contactId, thunkAPI) => {
-    try {
-      await axios.delete(`${BASE_URL}/${contactId}`);
-      return contactId;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// Slice
+import { createSelector, createSlice} from "@reduxjs/toolkit";
+import { fetchContacts, addContact, deleteContact } from "./operations";
+import { selectContacts } from "./selectors";
+import { selectNameFilter } from "../filters/selectors";
+import { logOut } from "../auth/operations";
 const contactsSlice = createSlice({
   name: "contacts",
   initialState: {
@@ -52,49 +10,72 @@ const contactsSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        console.log("Fetching contacts: pending");
+        state.error = false;
+        state.isLoading = true;
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
+        state.error = null;
         state.items = action.payload;
-        console.log("Fetching contacts: fulfilled", action.payload);
       })
       .addCase(fetchContacts.rejected, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.error = action.payload;
-        console.log("Fetching contacts: rejected", action.payload);
+      })
+
+      .addCase(addContact.pending, (state) => {
+        state.error = false;
+        state.isLoading = true;
       })
       .addCase(addContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
         state.items.push(action.payload);
       })
+      .addCase(addContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(deleteContact.pending, (state) => {
+        state.error = false;
+        state.isLoading = true;
+      })
       .addCase(deleteContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
         state.items = state.items.filter(
-          (contact) => contact.id !== action.payload
+          (item) => item.id !== action.payload.id
         );
+      })
+      .addCase(deleteContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+       
+        state.items = [];
+        state.loading = false;
+        state.error= null;
       });
   },
 });
 
-export const selectContacts = (state) => state.contacts.items;
-export const selectLoading = (state) => state.contacts.loading;
-export const selectError = (state) => state.contacts.error;
-
-export const selectFilteredContacts = createSelector(
-  [selectContacts, (state) => state.filters.name],
-  (items, nameFilter) => {
-    if (!nameFilter) {
-      return items;
-    }
-    return items.filter((contact) =>
-      contact.name.toLowerCase().includes(nameFilter.toLowerCase())
-    );
+export const visibleContacts = createSelector(
+  [selectContacts, selectNameFilter],
+  (contacts, selectNameFilter) => {
+    return contacts.filter((contact) => {
+      const filterName = contact.name
+        .toLowerCase()
+        .includes(selectNameFilter.toLowerCase());
+      const filterNumber = contact.number.includes(selectNameFilter);
+      return filterName || filterNumber;
+    });
   }
 );
 
-export default contactsSlice.reducer;
+export const contactReducer = contactsSlice.reducer;

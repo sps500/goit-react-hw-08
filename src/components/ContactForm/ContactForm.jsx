@@ -1,120 +1,92 @@
-// import { useState } from "react";
-// import styles from "./ContactForm.module.css";
-// import { useDispatch } from "react-redux";
-// import { addContact } from "../../redux/contactsSlice";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useId } from "react";
+import * as Yup from "yup";
+import toast from "react-hot-toast";
 
-// const ContactForm = () => {
-//   const [name, setName] = useState("");
-//   const [number, setNumber] = useState("");
-//   const [errors, setErrors] = useState({});
-//   const dispatch = useDispatch();
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     const newErrors = validateForm();
-//     if (Object.keys(newErrors).length > 0) {
-//       setErrors(newErrors);
-//       return;
-//     }
-
-//     const newContact = {
-//       id: Date.now().toString(),
-//       name,
-//       number,
-//     };
-//     dispatch(addContact(newContact));
-//     setName("");
-//     setNumber("");
-//     setErrors({});
-//   };
-
-//   const validateForm = () => {
-//     const errors = {};
-//     if (!name) {
-//       errors.name = "Name is required";
-//     }
-//     if (!number) {
-//       errors.number = "Number is required";
-//     } else if (!/^[0-9 ()+-]*$/.test(number)) {
-//       errors.number = "Number must be 10 digits long";
-//     }
-//     return errors;
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} className={styles.form}>
-//       <div>
-//         <input
-//           type="text"
-//           value={name}
-//           onChange={(e) => setName(e.target.value)}
-//           placeholder="Name"
-//         />
-//         {errors.name && <span className={styles.error}>{errors.name}</span>}
-//       </div>
-//       <div>
-//         <input
-//           type="text"
-//           value={number}
-//           onChange={(e) => setNumber(e.target.value)}
-//           placeholder="Number"
-//         />
-//         {errors.number && <span className={styles.error}>{errors.number}</span>}
-//       </div>
-//       <button type="submit">Add Contact</button>
-//     </form>
-//   );
-// };
-
-// export default ContactForm;
-import { useState } from "react";
+import { addContact } from "../../redux/contacts/operations";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
-import styles from "./ContactForm.module.css";
+import css from "./ContactForm.module.css";
 
-const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+export default function ContactForm() {
   const dispatch = useDispatch();
+  const nameFieldId = useId();
+  const numberFieldId = useId();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(addContact({ name, phoneNumber }));
-    setName("");
-    setPhoneNumber("");
+  const validationControl = Yup.object().shape({
+    name: Yup.string()
+      .min(3, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    number: Yup.string()
+      .min(3, "Too short")
+      .max(12, "Too long")
+      .required("Required"),
+  });
+        
+  
+  const initialContact = {
+    name: "",
+    number: "",
   };
 
-  const handlePhoneNumberChange = (event) => {
-    const inputValue = event.target.value;
-    if (/^[0-9 ()+-]*$/.test(inputValue) || inputValue === "") {
-      setPhoneNumber(inputValue);
-    }
+  const handleSubmit = (values, actions) => {
+    dispatch(addContact(values))
+      .unwrap()
+      .then(() => {
+           toast("The contact has been added", {           
+             style: { background: "green" },
+             position:"top-center",
+           });
+      })
+      .catch(() => {
+        toast("Was error, please try again", {         
+          style: { background: "red" },
+          containerStyle: {
+            top: 150,
+            left: 20,
+            bottom: 20,
+            right: 20,
+          },
+        });
+      });
+    
+
+    actions.resetForm();
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <label>
-        Name:
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Phone Number:
-        <input
-          type="tel"
-          value={phoneNumber}
-          onChange={handlePhoneNumberChange}
-          required
-        />
-      </label>
-      <button type="submit">Add Contact</button>
-    </form>
-  );
-};
+    <Formik
+      initialValues={initialContact}
+      onSubmit={handleSubmit}
+      validationSchema={validationControl}
+    >
+      <Form className={css.formStyle}>
+        <div className={css.fialdStyle}>
+          <label htmlFor={nameFieldId}>Name</label>
+          <Field
+            className={css.field}
+            id={nameFieldId}
+            type="text"
+            name="name"
+          />
+          <ErrorMessage className={css.err} name="name" component="span" />
+        </div>
 
-export default ContactForm;
+        <div className={css.fialdStyle}>
+          <label htmlFor={numberFieldId}>Number</label>
+          <Field
+            className={css.field}
+            id={numberFieldId}
+            type="tel"
+            name="number"
+          />
+          <ErrorMessage className={css.err} name="number" component="span" />
+        </div>
+
+        <button type="submit" className={css.btn}>
+          Add contact
+        </button>
+      </Form>
+    </Formik>
+  );
+}
