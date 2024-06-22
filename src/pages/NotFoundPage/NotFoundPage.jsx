@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div>
       <p>
-        Sorry, page not found! Please go to <Link to="/">home page</Link>!
+        404 - Сторінка не знайдена <Link to="/">home page</Link>!
       </p>
     </div>
   );

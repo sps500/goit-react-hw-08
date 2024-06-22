@@ -22,7 +22,7 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
     border: "none",
     borderRadius: "10px",
-    background: "#e9d8ff",
+    background: "#71c1e0",
     overflow: "visible",
     height: "auto",
     width: "auto",

@@ -22,8 +22,7 @@ export default function ContactForm() {
       .max(12, "Too long")
       .required("Required"),
   });
-        
-  
+
   const initialContact = {
     name: "",
     number: "",
@@ -33,13 +32,13 @@ export default function ContactForm() {
     dispatch(addContact(values))
       .unwrap()
       .then(() => {
-           toast("The contact has been added", {           
-             style: { background: "green" },
-             position:"top-center",
-           });
+        toast("The contact has been added", {
+          style: { background: "green" },
+          position: "top-center",
+        });
       })
       .catch(() => {
-        toast("Was error, please try again", {         
+        toast("Was error, please try again", {
           style: { background: "red" },
           containerStyle: {
             top: 150,
@@ -49,7 +48,6 @@ export default function ContactForm() {
           },
         });
       });
-    
 
     actions.resetForm();
   };
@@ -61,7 +59,7 @@ export default function ContactForm() {
       validationSchema={validationControl}
     >
       <Form className={css.formStyle}>
-        <div className={css.fialdStyle}>
+        <div className={css.feeldStyle}>
           <label htmlFor={nameFieldId}>Name</label>
           <Field
             className={css.field}
@@ -72,7 +70,7 @@ export default function ContactForm() {
           <ErrorMessage className={css.err} name="name" component="span" />
         </div>
 
-        <div className={css.fialdStyle}>
+        <div className={css.feeldStyle}>
           <label htmlFor={numberFieldId}>Number</label>
           <Field
             className={css.field}

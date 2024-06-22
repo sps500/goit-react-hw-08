@@ -25,7 +25,11 @@ a:hover {
 body {
   margin: 0;
   display: block;
-  /* place-items: center; */
+  background-image: url("../src/components/Foto/телефон.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
   min-width: 320px;
   min-height: 100vh;
 }

@@ -10,7 +10,7 @@
   border: 1px solid #1fd62f;
 }
 
-.fialdStyle {
+.feeldStyle {
   display: block;
   padding: 10px;
 }
@@ -19,22 +19,22 @@
   display: block;
   padding: 10px;
   width: 250px;
-  border: 1px solid #a477e0;
+  border: 1px solid #0d0a11;
   border-radius: 5px;
 }
 
 .btn {
   display: block;
   padding: 10px;
-  background-color: white;
-  border: 1px solid #a477e0;
+  /* background-color: rgb(219, 224, 228); */
+  border: 1px solid #09060c;
   border-radius: 5px;
   margin: 0 auto;
 }
 .btn:hover,
 .btn:focus,
 .btn:active {
-  background-color: rgb(98, 11, 124);
+  background-color: #050407;
   color: white;
 }
 .err {

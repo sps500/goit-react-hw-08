@@ -1,11 +1,11 @@
 .list {
   display: flex;
-  border: 1px solid black;
+
   border-radius: 10px;
   padding: 10px;
   flex-wrap: wrap;
   list-style: none;
-  background-color: #c6eea0;
+
   justify-content: center;
   align-items: center;
 }

@@ -1,1 +1,14 @@
-.
+.welcome_text {
+  font-size: 48px;
+  font-weight: bold;
+  color: #5947ff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, #4753ff, #33ff44);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
+  animation: glow 1.5s infinite alternate;
+}

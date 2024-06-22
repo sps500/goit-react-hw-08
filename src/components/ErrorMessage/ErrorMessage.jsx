@@ -1,5 +1,5 @@
 export default function ErrorMessage (){
     return(
-        <p>Whoops, something went wrong! Please try reloading this page!</p>
+        <p>Упс... Щось пішло не так. Перезавантажте сторінку!</p>
     )
 }

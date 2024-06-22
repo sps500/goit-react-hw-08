@@ -1,7 +1,7 @@
 .form {
   width: 320px;
-  background-color: #e9d8ff;
-  border: 1px solid #4a47dd;
+  background-color: #c6eea0;
+  border: 1px solid #08080f;
   border-radius: 5px;
   padding: 20px;
   margin: 30px auto;
@@ -19,7 +19,7 @@
   display: block;
   padding: 10px;
   background-color: white;
-  border: 1px solid #2c0ed4;
+  border: 1px solid #07060c;
   border-radius: 5px;
   margin: 0 auto;
 }
@@ -27,7 +27,7 @@
 .btn:focus,
 .btn:active {
   background-color: #c6eea0;
-  color: white;
+  color: rgb(12, 6, 6);
 }
 .err {
   background-color: #c6eea0;
@@ -41,6 +41,6 @@
   display: block;
   padding: 10px;
   width: 280px;
-  border: 1px solid #a477e0;
+  border: 1px solid #070508;
   border-radius: 5px;
 }

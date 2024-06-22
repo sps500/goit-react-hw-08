@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors";
 import { logOut } from "../../redux/auth/operations";
 import css from "./UserMenu.module.css";
+import { GiExitDoor } from "react-icons/gi";
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -9,13 +10,13 @@ export default function UserMenu() {
 
   return (
     <div className={css.wrapper}>
-      <p className={css.username}>Welcome, {user.name}</p>
+      <p className={css.username}>Вітаю, {user.name}</p>
       <button
         type="button"
         className={css.btn}
         onClick={() => dispatch(logOut())}
       >
-        Logout
+        <GiExitDoor style={{ fontSize: 40 }} />
       </button>
     </div>
   );

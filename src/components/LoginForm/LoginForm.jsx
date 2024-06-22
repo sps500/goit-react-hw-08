@@ -6,20 +6,19 @@ import * as Yup from "yup";
 export default function LoginForm() {
   const dispatch = useDispatch();
 
-const validationControl = Yup.object().shape({
-  email: Yup.string()
-    .min(5, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  password: Yup.string()
-    .min(5, "Too short")
-    .max(18, "Too long")
-    .required("Required"),
-});
-
+  const validationControl = Yup.object().shape({
+    email: Yup.string()
+      .min(5, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    password: Yup.string()
+      .min(5, "Too short")
+      .max(18, "Too long")
+      .required("Required"),
+  });
 
   const handleSubmit = (values, actions) => {
-    dispatch(logIn(values)) 
+    dispatch(logIn(values));
     actions.resetForm();
   };
 
@@ -33,7 +32,7 @@ const validationControl = Yup.object().shape({
       validationSchema={validationControl}
     >
       <Form className={css.formStyle} autoComplete="off">
-        <div className={css.fialdStyle}>
+        <div className={css.feeldStyle}>
           <label className={css.label}>
             Email
             <Field type="email" name="email" className={css.field} />

@@ -2,7 +2,8 @@
   display: flex;
   gap: 30px;
   justify-content: center;
-  background-color: #e9d8ff;
+
+  background-color: #71c1e0;
 }
 
 .btnYes {
@@ -11,8 +12,8 @@
 .btnNo:hover,
 .btnNo:focus,
 .btnNo:active {
-  background-color: #c6eea0;
-  color: white;
+  background-color: rgb(230, 96, 96);
+  color: rgb(7, 7, 12);
 }
 .btnNo {
   background-color: white;
@@ -21,5 +22,5 @@
 .btnYes:hover,
 .btnYes:focus,
 .btnYes:active {
-  background-color: #c6eea0;
+  background-color: #a0eebe;
 }

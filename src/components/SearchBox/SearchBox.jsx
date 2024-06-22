@@ -3,20 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectNameFilter } from "../../redux/filters/selectors";
 import { setStatusFilter } from "../../redux/filters/slice";
 import { useId } from "react";
+import { RiFindReplaceLine } from "react-icons/ri";
 
 export default function SearchBox() {
   const id = useId();
 
   const dispatch = useDispatch();
   const filter = useSelector(selectNameFilter);
-  
+
   const handleFilter = (e) => {
     const name = e.target.value.trim();
     dispatch(setStatusFilter(name));
   };
   return (
     <div className={css.box}>
-      <p className={css.label}>Find contact</p>
+      <p className={css.label}>
+        <RiFindReplaceLine style={{ fontSize: 30 }} /> contact
+      </p>
       <input
         className={css.input}
         type="text"

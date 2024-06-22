@@ -1,18 +1,15 @@
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 import css from "./Contact.module.css";
+import { RiDeleteBinFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 
 import { openModal } from "../../redux/modal/slice";
 
-
 export default function ContactItem({ contact: { id, name, number } }) {
   const dispatch = useDispatch();
- 
-  const handleDelete = () => {
-    // dispatch(deleteContact(id));
-    // toast("The contact has been deleted");
 
+  const handleDelete = () => {
     dispatch(openModal(id));
   };
   return (
@@ -27,9 +24,8 @@ export default function ContactItem({ contact: { id, name, number } }) {
       </div>
 
       <button className={css.btn} onClick={handleDelete}>
-        Delete
+        <RiDeleteBinFill style={{ fontSize: 30 }} />
       </button>
-
     </div>
   );
 }

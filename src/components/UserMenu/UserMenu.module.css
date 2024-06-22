@@ -15,5 +15,5 @@
 .btn:focus,
 .btn:active {
   background-color: #c6eea0;
-  color: white;
+  color: rgb(7, 4, 4);
 }

@@ -4,7 +4,6 @@ import Layout from "./Layout/Layout.jsx";
 import Loader from "../components/Loader/Loader.jsx";
 import RestrictedRoute from "./RestrictedRoute.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
-import css from "./App.module.css";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage.jsx"));
 const NotFoundPage = lazy(() => import("../pages/NotFoundPage/NotFoundPage"));
@@ -19,7 +18,7 @@ import { refreshUser } from "../redux/auth/operations.js";
 import { selectIsRefreshing } from "../redux/auth/selectors.js";
 
 export default function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
